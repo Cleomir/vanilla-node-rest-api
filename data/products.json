@@ -1,0 +1,30 @@
+[
+  {
+    "id": "809b6773-17b9-4702-9086-1687201357c0",
+    "name": "Apple iPhone 14 Pro Max",
+    "description": "The latest and greatest iPhone from Apple, with a new design, A16 Bionic chip, and improved camera system.",
+    "price": 999.99,
+    "quantity": 100
+  },
+  {
+    "id": "9e756b1a-4624-489f-a414-473c49686817",
+    "name": "Samsung Galaxy S23 Ultra",
+    "description": "Samsung's flagship phone for 2023, with a powerful Snapdragon 8 Gen 2 chip, quad-lens rear camera system, and large, high-resolution display.",
+    "price": 1199.99,
+    "quantity": 50
+  },
+  {
+    "id": "24e31a5c-4e42-42ed-a3b2-2e4a3c1a7d0e",
+    "name": "Google Pixel 7 Pro",
+    "description": "Google's latest Pixel phone, with a new Tensor 2 chip, improved camera system, and sleek design.",
+    "price": 899.99,
+    "quantity": 75
+  },
+  {
+    "id": "1723ac38-a417-4407-9d03-8748878f8840",
+    "name": "Microsoft Surface Laptop 5",
+    "description": "Microsoft's latest premium laptop, with a new design, 12th Gen Intel Core processors, and Windows 11.",
+    "price": 999.99,
+    "quantity": 100
+  }
+]
