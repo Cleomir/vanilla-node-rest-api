@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/index.js",
+    "start:dev": "nodemon ./src/index.js"
   },
   "author": "Cleomir Machado Gomes",
   "license": "ISC",
   "dependencies": {
     "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
