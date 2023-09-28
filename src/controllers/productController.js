@@ -1,5 +1,6 @@
 const Product = require("../models/productModel");
 
+// GET /api/products
 const getProducts = async (request, response) => {
   try {
     const products = await Product.findAll();
