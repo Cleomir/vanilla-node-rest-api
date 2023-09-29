@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const { parseBodyData } = require("../utils");
 
 // GET /api/products
 const getProducts = async (request, response) => {
@@ -7,6 +8,24 @@ const getProducts = async (request, response) => {
 
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(JSON.stringify(products));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// POST /api/products
+const createProduct = async (request, response) => {
+  try {
+    const { name, description, price, quantity } = await parseBodyData(request);
+    const newProduct = await Product.create({
+      name,
+      description,
+      price,
+      quantity,
+    });
+
+    response.writeHead(201, { "Content-Type": "application/json" });
+    response.end(JSON.stringify(newProduct));
   } catch (error) {
     console.error(error);
   }
@@ -31,5 +50,6 @@ const getProduct = async (request, response, id) => {
 
 module.exports = {
   getProducts,
+  createProduct,
   getProduct,
 };

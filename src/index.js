@@ -1,17 +1,21 @@
 const http = require("http");
 
-const { getProducts, getProduct } = require("./controllers/productController");
+const {
+  getProducts,
+  createProduct,
+  getProduct,
+} = require("./controllers/productController");
 
 const port = 5000;
 
 const server = http.createServer(async (request, response) => {
-  if (request.url === "/api/products") {
+  const { url, method } = request;
+  if (url === "/api/products" && method === "GET") {
     await getProducts(request, response);
-  } else if (
-    request.url.match(/\/api\/products\/([0-9]+)/) &&
-    request.method === "GET"
-  ) {
-    const productId = request.url.split("/")[3]; //api/products/132
+  } else if (url === "/api/products" && method === "POST") {
+    await createProduct(request, response);
+  } else if (url.match(/\/api\/products\/([0-9]+)/) && method === "GET") {
+    const productId = url.split("/")[3]; //api/products/132
     await getProduct(request, response, productId);
   } else {
     response.writeHead(404, { "Content-Type": "application/json" });
