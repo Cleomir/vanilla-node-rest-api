@@ -19,7 +19,6 @@ const parseBodyData = (request) => {
         })
         .on("end", () => {
           body = Buffer.concat(body).toString();
-          const parsedBody = JSON.parse(body);
           resolve(JSON.parse(body));
         });
     } catch (error) {

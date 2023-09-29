@@ -16,6 +16,15 @@ const create = async (product) => {
   return newProduct;
 };
 
+const update = async (product, id) => {
+  const productIndex = products.findIndex((product) => product.id === id);
+  products[productIndex] = { id, ...product };
+
+  writeDataToFile("./data/products.json", products);
+
+  return products[productIndex];
+};
+
 const findById = async (id) => {
   const product = products.find((product) => product.id === id);
 
@@ -25,5 +34,6 @@ const findById = async (id) => {
 module.exports = {
   findAll,
   create,
+  update,
   findById,
 };

@@ -9,7 +9,7 @@ const getProducts = async (request, response) => {
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(JSON.stringify(products));
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -27,11 +27,41 @@ const createProduct = async (request, response) => {
     response.writeHead(201, { "Content-Type": "application/json" });
     response.end(JSON.stringify(newProduct));
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
-// GET /api/product
+// PATCH /api/products/:id
+const updateProduct = async (request, response, id) => {
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ message: "Product not found" }));
+    } else {
+      const { name, description, price, quantity } = await parseBodyData(
+        request
+      );
+      const updatedProduct = await Product.update(
+        {
+          name: name || product.name,
+          description: description || product.description,
+          price: price || product.price,
+          quantity: quantity || product.quantity,
+        },
+        id
+      );
+
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(JSON.stringify(updatedProduct));
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+// GET /api/product/:id
 const getProduct = async (request, response, id) => {
   try {
     const product = await Product.findById(id);
@@ -44,12 +74,13 @@ const getProduct = async (request, response, id) => {
       response.end(JSON.stringify(product));
     }
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
 module.exports = {
   getProducts,
   createProduct,
+  updateProduct,
   getProduct,
 };
