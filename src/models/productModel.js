@@ -31,9 +31,17 @@ const findById = async (id) => {
   return product;
 };
 
+const remove = async (id) => {
+  const productIndex = products.findIndex((product) => product.id === id);
+  products.splice(productIndex, 1);
+
+  writeDataToFile("./data/products.json", products);
+};
+
 module.exports = {
   findAll,
   create,
   update,
   findById,
+  remove,
 };

@@ -78,9 +78,28 @@ const getProduct = async (request, response, id) => {
   }
 };
 
+// DELETE /api/product/:id
+const deleteProduct = async (request, response, id) => {
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ message: "Product not found" }));
+    } else {
+      await Product.remove(id);
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ message: `Product ${id} removed` }));
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getProducts,
   createProduct,
   updateProduct,
   getProduct,
+  deleteProduct,
 };
